@@ -1,0 +1,12 @@
+body{
+    color:blue;
+    background:grey;
+}
+h1 {
+    color: white;
+}
+
+#final-img {
+    height:350px;
+    border: solid black 2px;
+}
