@@ -13,8 +13,9 @@ libraries:
 - name: webapp2
   version: "2.5.2"
 - name: jinja2
-<<<<<<< HEAD
-  version: "2.6"
-=======
   version: latest
->>>>>>> af7000295db7b8a3fd53cee01e97fc0d8a0b36de
+# <<<<<<< HEAD
+#   version: "2.6"
+# =======
+#   version: latest
+# >>>>>>> af7000295db7b8a3fd53cee01e97fc0d8a0b36de
