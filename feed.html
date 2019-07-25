@@ -7,7 +7,17 @@
   <body>
     <h1>APParel: Personal Feed</h1>
     <!-- ITEM PROFILE -->
-    <button type="button">Like!</button>
-    <button type="button">Nope</button>
+    <img src = "{{image_url}}" style="max-width: 30%; max-height: 30%">
+    <p>{{item_description}}</p>
+
+    <form action="/like" method="post">
+      <input type="hidden" name="item_id" value= "{{item_id}}">
+        <input type="submit" value="Like!" />
+    </form>
+    <br>
+    <form action="/">
+        <input type="submit" value="Nope" />
+    </form>
+
   </body>
 </html>

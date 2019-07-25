@@ -1,7 +1,12 @@
 import webapp2
 import os
 import jinja2
-from models import Food
+import time
+from seed import seed_data
+from seed_function import UserProfile, Item, Like
+from google.appengine.api import users
+
+from google.appengine.ext import ndb
 
 #remember, you can get this by searching for jinja2 google app engine
 jinja_current_dir = jinja2.Environment(
@@ -9,31 +14,74 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-class FoodHandler(webapp2.RequestHandler):
+# class FoodHandler(webapp2.RequestHandler):
+#     def get(self):
+#         start_template = jinja_current_dir.get_template("templates/welcome.html")
+#         self.response.write(start_template.render())
+#
+#     def post(self):
+#         the_fav_food = self.request.get('user-fav-food')
+#
+#         #put into database (optional)
+#         food_record = Food(food_name = the_fav_food)
+#         food_record.put()
+#
+#         #pass to the template via a dictionary
+#         variable_dict = {'fav_food_for_view': the_fav_food}
+#          = jinja_current_dir.get_template("templates/results.html")
+#         self.response.write(.render(variable_dict))
+class Feed(webapp2.RequestHandler):
     def get(self):
-        start_template = jinja_current_dir.get_template("templates/welcome.html")
-        self.response.write(start_template.render())
+        template = jinja_current_dir.get_template("feed.html")
 
+        user = users.get_current_user()
+        potential_profiles = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)
+        if not potential_profiles:
+            UserProfile(user_id=user.user_id(), first_name=user.nickname(), last_name=user.nickname(), email=user.email()).put()
+            time.sleep(0.1)
+        profile = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)[0]
+        item_display = Item.query().filter(Item.owner != profile.key).fetch()[0]
+        # maybe use random integer for random picture (need to update seed if yes)
+
+        my_feed_dict = {
+        "image_url": item_display.img_url,
+        "item_description": item_display.description,
+        "item_id": item_display.key.urlsafe(),
+        }
+        self.response.write(template.render(my_feed_dict))
+        # item gets the item liked
+        # liker gets "who is the liker?"
+        # Like saves the like info
+
+class LikeHandler(webapp2.RequestHandler):
     def post(self):
-        the_fav_food = self.request.get('user-fav-food')
+        user = users.get_current_user()
+        item = ndb.Key(urlsafe=self.request.get('item_id')).get()
+        liker = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)[0]
+        item_owner_key = item.owner
+        Like(item=item.key, owner=item_owner_key, liker=liker.key).put()
+        mutual_likes = Like.query().filter(Like.liker == item_owner_key and Like.owner == liker.key).fetch()
+        if mutual_likes:
+            self.redirect('/match?matched_user_id=' + item_owner_key.urlsafe())
+        else:
+            self.redirect('/')
 
-        #put into database (optional)
-        food_record = Food(food_name = the_fav_food)
-        food_record.put()
-
-        #pass to the template via a dictionary
-        variable_dict = {'fav_food_for_view': the_fav_food}
-        end_template = jinja_current_dir.get_template("templates/results.html")
-        self.response.write(end_template.render(variable_dict))
-
-class ShowFoodHandler(webapp2.RequestHandler):
+class MatchHandler(webapp2.RequestHandler):
     def get(self):
-        food_list_template = jinja_current_dir.get_template("templates/foodlist.html")
-        fav_foods = Food.query().order(-Food.food_name).fetch(3)
-        dict_for_template = {'top_fav_foods': fav_foods}
-        self.response.write(food_list_template.render(dict_for_template))
+        matched_user_id = self.request.get('matched_user_id')
+        matched_user = ndb.Key(urlsafe=matched_user_id).get()
+        user = users.get_current_user()
+        liker = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)[0]
+        self.response.write("You had a match! " + "You matched with " + str(matched_user.email))
+
+
+class LoadDataHandler(webapp2.RequestHandler):
+    def get(self):
+        seed_data()
 
 app = webapp2.WSGIApplication([
-    ('/', FoodHandler),
-    ('/showfavs', ShowFoodHandler)
+    ('/', Feed),
+    ('/seed-data', LoadDataHandler),
+    ('/like', LikeHandler),
+    ('/match', MatchHandler)
 ], debug=True)
