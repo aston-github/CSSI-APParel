@@ -7,7 +7,7 @@ threadsafe: yes
 handlers:
 - url: /style
   static_dir: style
-  
+
 - url: .*
   script: main.app
   login: required

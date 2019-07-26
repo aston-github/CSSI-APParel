@@ -9,7 +9,9 @@ h1 {
     color: salmon;
     font-family: 'Carter One', cursive;
     font-size: 50px;
-    background-color: powderblue;
+    background-image: url("https://www.larutadelsorigens.cat/wallpic/full/3-31011_watercolor-desktop-pastel-background.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
     margin: 0px;
     padding: 6%;
 }
@@ -22,30 +24,32 @@ p {
   float: left;
   margin-left: 30%;
   padding-bottom: 10%;
+  font-family: 'Farro'
 }
 
 .Nope {
   float: right;
   margin-right: 30%;
   padding-bottom: 10%;
+  font-family: 'Anton'
 }
 
 #submit {
   border-radius: 25px;
-  border: 2px solid #ff9999;
-  background: #ff9999;
-  padding: 20px;
+  background: #b4ecb4;
+  border: 2px solid #b4ecb4;
   width: 100px;
   height: 40px;
   font-size: 20px;
+  vertical-align: middle;
 }
 
 #submit2 {
   border-radius: 25px;
-  background: #ff9999;
-  border: 2px solid #ff9999 ;
-  padding: 20px;
+  background: #ffcccc;
+  border: 2px solid #ffcccc;
   width: 100px;
   height: 40px;
   font-size: 20px;
+  vertical-align: middle;
 }
