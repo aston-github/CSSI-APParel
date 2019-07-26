@@ -3,21 +3,31 @@
   <head>
     <meta charset="utf-8">
     <title>APParel</title>
+    <link rel="stylesheet" type="text/css" href="/style/my_style.css">
+    <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil|Baloo+Tamma|Carter+One|Libre+Franklin|Life+Savers|Pacifico&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>APParel: Personal Feed</h1>
-    <!-- ITEM PROFILE -->
-    <img src = "{{image_url}}" style="max-width: 30%; max-height: 30%">
-    <p>{{item_description}}</p>
-
-    <form action="/like" method="post">
-      <input type="hidden" name="item_id" value= "{{item_id}}">
-        <input type="submit" value="Like!" />
-    </form>
+    <div id="header">
+      <h1>APParel: Personal Feed</h1>
+    </div>
     <br>
-    <form action="/">
-        <input type="submit" value="Nope" />
-    </form>
+    <br>
+    <!-- ITEM PROFILE -->
+      <img src = "{{image_url}}" style="max-width: 40%; max-height: 40%">
+      <p>{{item_description}}</p>
+
+<div class="Like">
+  <form action="/like" method="post">
+    <input type="hidden" name="item_id" value= "{{item_id}}">
+      <input type="submit" value="Like!" id="submit"/>
+  </form>
+</div>
+
+<div class="Nope">
+  <form action="/">
+      <input type="submit" value="Nope" id="submit2"/>
+  </form>
+</div>
 
   </body>
 </html>

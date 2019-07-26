@@ -1,0 +1,35 @@
+body {
+  background-color: ffe6e6;
+  font-family: 'Carter One', cursive;
+  text-align: center;
+  margin: auto;
+}
+
+h1 {
+    color: salmon;
+    font-family: 'Carter One', cursive;
+    font-size: 50px;
+    background-color: powderblue;
+    margin: 0px;
+    padding: 6%;
+}
+
+p {font-size: 20px}
+
+.Like {
+  float: left;
+  margin-left: 30%;
+}
+
+.Nope {
+  float: right;
+  margin-right: 30%;
+}
+
+#submit {
+  font-size: 100px;
+}
+
+#submit2 {
+  font-size: 100px;
+}
