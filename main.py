@@ -5,7 +5,7 @@ import time
 from seed import seed_data
 from seed_function import UserProfile, Item, Like
 from google.appengine.api import users
-
+import random
 from google.appengine.ext import ndb
 
 #remember, you can get this by searching for jinja2 google app engine
@@ -14,10 +14,12 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
+cycle_number = 0
+
 class Feed(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("feed.html")
-
+        global cycle_number
         user = users.get_current_user()
         potential_profiles = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)
         if not potential_profiles:
@@ -25,7 +27,11 @@ class Feed(webapp2.RequestHandler):
             time.sleep(0.1)
 
         profile = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)[0]
-        item_display = Item.query().filter(Item.owner != profile.key).fetch()[0]
+
+        item_display = Item.query().filter(Item.owner != profile.key).fetch()[cycle_number]
+        cycle_number = cycle_number + 1
+        if cycle_number == 5:
+            cycle_number = 0
         # maybe use random integer for random picture (need to update seed if yes)
 
         my_feed_dict = {
