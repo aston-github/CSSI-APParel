@@ -9,7 +9,9 @@ h1 {
     color: salmon;
     font-family: 'Carter One', cursive;
     font-size: 50px;
-    background-color: powderblue;
+    background-image: url("https://www.larutadelsorigens.cat/wallpic/full/3-31011_watercolor-desktop-pastel-background.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
     margin: 0px;
     padding: 6%;
 }
