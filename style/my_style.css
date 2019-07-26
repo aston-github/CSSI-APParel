@@ -31,9 +31,21 @@ p {
 }
 
 #submit {
-  font-size: 50px;
+  border-radius: 25px;
+  border: 2px solid #ff9999;
+  background: #ff9999;
+  padding: 20px;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
 }
 
 #submit2 {
-  font-size: 50px;
+  border-radius: 25px;
+  background: #ff9999;
+  border: 2px solid #ff9999 ;
+  padding: 20px;
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
 }
