@@ -11,7 +11,7 @@ h1 {
     font-size: 50px;
     background-image: url("https://www.larutadelsorigens.cat/wallpic/full/3-31011_watercolor-desktop-pastel-background.jpg");
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     margin: 0px;
     padding: 6%;
 }
