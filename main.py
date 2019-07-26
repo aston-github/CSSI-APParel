@@ -14,22 +14,6 @@ jinja_current_dir = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-# class FoodHandler(webapp2.RequestHandler):
-#     def get(self):
-#         start_template = jinja_current_dir.get_template("templates/welcome.html")
-#         self.response.write(start_template.render())
-#
-#     def post(self):
-#         the_fav_food = self.request.get('user-fav-food')
-#
-#         #put into database (optional)
-#         food_record = Food(food_name = the_fav_food)
-#         food_record.put()
-#
-#         #pass to the template via a dictionary
-#         variable_dict = {'fav_food_for_view': the_fav_food}
-#          = jinja_current_dir.get_template("templates/results.html")
-#         self.response.write(.render(variable_dict))
 class Feed(webapp2.RequestHandler):
     def get(self):
         template = jinja_current_dir.get_template("feed.html")

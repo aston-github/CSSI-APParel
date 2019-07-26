@@ -14,16 +14,20 @@ h1 {
     padding: 6%;
 }
 
-p {font-size: 20px}
+p {
+  font-size: 20px;
+}
 
 .Like {
   float: left;
   margin-left: 30%;
+  padding-bottom: 10%;
 }
 
 .Nope {
   float: right;
   margin-right: 30%;
+  padding-bottom: 10%;
 }
 
 #submit {
