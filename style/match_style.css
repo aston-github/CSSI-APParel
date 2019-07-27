@@ -1,0 +1,29 @@
+body {
+  background-color: ffe6e6;
+  font-family: 'Carter One', cursive;
+  text-align: center;
+  margin: auto;
+  /* background-image: url("https://thumbs.gfycat.com/InfamousJollyArrowcrab-size_restricted.gif");
+  background-size: cover; */
+}
+
+h1 {
+    color: salmon;
+    font-family: 'Carter One', cursive;
+    font-size: 50px;
+    background-image: url("https://www.larutadelsorigens.cat/wallpic/full/3-31011_watercolor-desktop-pastel-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0px;
+    padding: 6%;
+}
+
+h2 {
+  color: lightskyblue;
+  font-size: 40px;
+}
+
+h3 {
+  color: darkgray;
+  font-size: 20px;
+}

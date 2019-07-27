@@ -61,12 +61,16 @@ class LikeHandler(webapp2.RequestHandler):
 
 class MatchHandler(webapp2.RequestHandler):
     def get(self):
+        template = jinja_current_dir.get_template("match.html")
         matched_user_id = self.request.get('matched_user_id')
         matched_user = ndb.Key(urlsafe=matched_user_id).get()
         user = users.get_current_user()
         liker = UserProfile.query(UserProfile.user_id == user.user_id()).fetch(1)[0]
-
-        self.response.write("You had a match! " + "You matched with " + str(matched_user.email))
+        my_match_dict = {
+        "match_email": str(matched_user.email)
+        }
+        self.response.write(template.render(my_match_dict))
+        # self.response.write("You had a match! You matched with " + str(matched_user.email))
 
 
 class LoadDataHandler(webapp2.RequestHandler):
