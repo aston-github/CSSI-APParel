@@ -24,14 +24,14 @@ p {
   float: left;
   margin-left: 30%;
   padding-bottom: 10%;
-  font-family: 'Farro'
+  font-family: 'Farro';
 }
 
 .Nope {
   float: right;
   margin-right: 30%;
   padding-bottom: 10%;
-  font-family: 'Anton'
+  font-family: 'Anton';
 }
 
 #submit {
